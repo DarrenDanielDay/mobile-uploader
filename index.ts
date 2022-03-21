@@ -1,6 +1,5 @@
 import express from "express";
 import fileUpload from "express-fileupload";
-import fs from "fs/promises";
 import fsextra from "fs-extra";
 import path from "path";
 const uploadDir = "upload";
@@ -17,7 +16,7 @@ app.post("/upload", async (req, res) => {
     const flattened = Array.from(Object.values(files)).flat();
     await Promise.all(
       flattened.map((file) =>
-        fs.writeFile(path.join(uploadDir, file.name), file.data)
+        fsextra.writeFile(path.join(uploadDir, file.name), file.data)
       )
     );
     res.end('<script>alert("Uploaded!");window.location.href = "/"</script>');
