@@ -1,0 +1,18 @@
+body {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+body > * {
+  margin: 16px;
+}
+.ip-address-info > div {
+  max-width: 300px;
+  display: flex;
+  justify-content: space-between;
+}
+.ip-address-info > div  label::after {
+  content: ":";
+}

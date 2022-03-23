@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="ipv4-address" content="<%= ipv4 %>" />
+    <meta name="ipv6-address" content="<%= ipv6 %>" />
+    <meta name="serve-port" content="<%= port %>" />
+    <meta name="quick-link" content="<%= quickLink %>" />
+    <title>Uploader</title>
+    <script src="/js/qrcode.js"></script>
+    <link rel="stylesheet" href="/css/index.css">
+  </head>
+  <body>
+    <div>
+      <form method="post" action="/upload" enctype="multipart/form-data">
+        <input name="files" type="file" multiple />
+        <input type="submit" />
+      </form>
+      <button onclick="openFolder()">open upload folder</button>
+    </div>
+    <div id="qrcode"></div>
+    <div class="ip-address-info">
+      <div>
+        <desc>
+          <label>ipv4</label>
+          <span><%= ipv4 %></span>
+        </desc>
+        <button onclick="copyToClipboard(ipv4)">copy</button>
+      </div>
+      <div>
+        <desc>
+          <label>ipv6</label>
+          <span><%= ipv6 %></span>
+        </desc>
+        <button onclick="copyToClipboard(ipv6)">copy</button>
+      </div>
+      <div>
+        <desc>
+          <label>address</label>
+          <span><%= quickLink %></span>
+        </desc>
+        <button onclick="copyToClipboard(quickLink)">copy</button>
+      </div>
+    </div>
+    <script src="/js/setup.js"></script>
+  </body>
+</html>
