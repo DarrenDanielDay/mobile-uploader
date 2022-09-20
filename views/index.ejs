@@ -10,7 +10,7 @@
     <meta name="quick-link" content="<%= quickLink %>" />
     <title>Uploader</title>
     <script src="/js/qrcode.js"></script>
-    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/index.css" />
   </head>
   <body>
     <div>
@@ -19,6 +19,19 @@
         <input type="submit" />
       </form>
       <button onclick="openFolder()">open upload folder</button>
+    </div>
+    <div>
+      <div>
+        <textarea onclick="HTMLTextAreaElement.prototype.select.call(this)">
+          <%= lastPaste %>
+        </textarea>
+        <button onclick="copyToClipboard('<%= lastPaste %>')">copy</button>
+      </div>
+      <form method="post" action="/paste" enctype="multipart/form-data">
+        <label> paste</label>
+        <input type="text" name="content" />
+        <input type="submit" />
+      </form>
     </div>
     <div id="qrcode"></div>
     <div class="ip-address-info">
@@ -43,6 +56,25 @@
         </desc>
         <button onclick="copyToClipboard(quickLink)">copy</button>
       </div>
+    </div>
+    <button onclick="showSize()">show size</button>
+    <p>
+      <span>my ip:</span>
+      <span><%= ip %></span>
+    </p>
+    <div id="chat-form-wrapper">
+      <form action="/chat-file" method="post" enctype="multipart/form-data">
+        <input name="ip" type="text" hidden>
+        <input name="file" type="file" required>
+      </form>
+    </div>
+    <div>
+      <% for (const member of room.filter((m) => m.ip !== ip)) {%>
+      <div>
+        <div><%= member.ip %></div>
+        <button onclick="send('<%= member.ip %>')">send</button>
+      </div>
+      <% }%>
     </div>
     <script src="/js/setup.js"></script>
   </body>
