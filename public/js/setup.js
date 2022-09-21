@@ -67,6 +67,7 @@ ws.addEventListener("message", (e) => {
       const link = document.createElement("a");
       link.href = url;
       link.appendChild(new Text(meta.fileName));
+      link.download = meta.fileName;
       document.body.appendChild(link);
     };
   }
